@@ -6,7 +6,7 @@ environment:
 tasks:
   - package: |
       cd dieklefischer
-      tar -cvz index.html datenschutz.html css/* js/* images/* pdf/* scss/* webfonts/* > site.tar.gz
+      tar -cvz index.html css/* js/* images/* pdf/* scss/* webfonts/* > site.tar.gz
       cd redir
       tar -cvz index.html > site.tar.gz
   - upload: |
