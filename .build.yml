@@ -1,0 +1,16 @@
+image: alpine/latest
+oauth: pages.sr.ht/PAGES:RW
+environment:
+  main: dieklefischer.de
+  www: www.dieklefischer.de
+tasks:
+  - package: |
+      cd dieklefischer
+      tar -cvz index.html datenschutz.html css/* js/* images/* pdf/* scss/* webfonts/* > site.tar.gz
+      cd redir
+      tar -cvz index.html > site.tar.gz
+  - upload: |
+      cd dieklefischer
+      acurl -f https://pages.sr.ht/publish/$main -Fcontent=@site.tar.gz
+      cd redir
+      acurl -f https://pages.sr.ht/publish/$www -Fcontent=@site.tar.gz
